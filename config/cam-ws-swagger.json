@@ -1,0 +1,3112 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "CAM API",
+    "contact": {
+      "name": "Mondeca Support",
+      "url": "http://www.mondeca.com",
+      "email": "support@mondeca.com"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/rs/cam-info": {
+      "get": {
+        "summary": "Get CAM information",
+        "operationId": "camInfoJ",
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CamInformation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/config/{set}/{resourceId}": {
+      "get": {
+        "summary": "Get configuration resource",
+        "operationId": "getResourceJ",
+        "parameters": [
+          {
+            "name": "set",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["binary", "text", "form"]
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceOperationResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Create configuration resource",
+        "operationId": "createResourceJ",
+        "parameters": [
+          {
+            "name": "set",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "templateId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceOperationResult"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete configuration resource",
+        "operationId": "deleteResourceJ",
+        "parameters": [
+          {
+            "name": "set",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "resourceId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceOperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/config/{set}/resources/upload": {
+      "post": {
+        "summary": "Upload configuration resources",
+        "operationId": "uploadResourceJ",
+        "parameters": [
+          {
+            "name": "set",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UploadResourcesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceOperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/config/{set}/resources/delete": {
+      "post": {
+        "summary": "Delete configuration resources",
+        "operationId": "deleteResourcesJ",
+        "parameters": [
+          {
+            "name": "set",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteResourcesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceOperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/user": {
+      "get": {
+        "summary": "Get user information",
+        "operationId": "userInfoJ",
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInformation"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Set user information",
+        "operationId": "putUserInfoJ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserInfoRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/config": {
+      "get": {
+        "summary": "List CAM configuration sets",
+        "operationId": "listSetsJ",
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/config/{set}": {
+      "get": {
+        "summary": "List configuration resources in a set",
+        "operationId": "listResourceJ",
+        "parameters": [
+          {
+            "name": "set",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourcesSet"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/config/{set}/resources/get": {
+      "post": {
+        "summary": "Get configuration resources",
+        "operationId": "getResourcesJ",
+        "parameters": [
+          {
+            "name": "set",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetResourcesRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceOperationResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/corpus": {
+      "get": {
+        "summary": "List corpora",
+        "operationId": "getCorporaListJ",
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorporaList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/corpus/{corpusName}": {
+      "get": {
+        "summary": "Get corpus information",
+        "operationId": "getCorpusInfoJ",
+        "parameters": [
+          {
+            "name": "corpusName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Corpus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Create a new corpus",
+        "operationId": "createNewCorpusJ",
+        "parameters": [
+          {
+            "name": "corpusName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "accessRight",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": ["private_access", "public_access", "public_readonly"]
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "*/*": {}
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Add or delete file reference in a corpus",
+        "operationId": "addOrDeleteFileReferencesInCorpusJ",
+        "parameters": [
+          {
+            "name": "corpusName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddOrDeleteFileReferenceInCorpusRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "*/*": {}
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a corpus",
+        "operationId": "deleteCorpusJ",
+        "parameters": [
+          {
+            "name": "corpusName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "*/*": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/corpus/{corpusName}/update": {
+      "put": {
+        "summary": "Modify a corpus",
+        "operationId": "modifyCorpusJ",
+        "parameters": [
+          {
+            "name": "corpusName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HttpModifyCorpusRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "*/*": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/corpus/{corpusName}/list": {
+      "get": {
+        "summary": "Get list of files references in corpus",
+        "operationId": "getListofFileReferencesInCorpusJ",
+        "parameters": [
+          {
+            "name": "corpusName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startOffset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "nbResults",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileReferencesList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/corpus/{corpusName}/list/info": {
+      "get": {
+        "summary": "Get list of files content information in corpus",
+        "operationId": "getContentInformationForFileInCorpus",
+        "parameters": [
+          {
+            "name": "corpusName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startOffset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "nbResults",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "NAME_ASC",
+                "NAME_DESC",
+                "CREATION_DATE_ASC",
+                "CREATION_DATE_DESC",
+                "MODIF_DATE_ASC",
+                "MODIF_DATE_DESC",
+                "SIZE_ASC",
+                "SIZE_DESC",
+                "MIME_ASC",
+                "MIME_DESC",
+                "REPOSITORY_ASC",
+                "REPOSITORY_DESC"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileContentInformationList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/corpus/{corpusName}/search/info": {
+      "post": {
+        "summary": "Search files content information",
+        "operationId": "searchContentsInformationInCorpus",
+        "parameters": [
+          {
+            "name": "corpusName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchParametersCorpus"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResultsCorpus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/repository": {
+      "get": {
+        "summary": "List repositories",
+        "operationId": "getRepositoriesListJ",
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RepositoriesList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/repository/{repository}/dirs": {
+      "post": {
+        "summary": "Create folders from files paths in a repository",
+        "operationId": "createFoldersInRepositoryJ",
+        "parameters": [
+          {
+            "name": "repository",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFoldersRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "*/*": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/repository/{repository}/files": {
+      "post": {
+        "summary": "Copy files from files references in a repository",
+        "operationId": "addFileReferencesInRepositoryJ",
+        "parameters": [
+          {
+            "name": "repository",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CopyFileReferencesInRepositoryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "*/*": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/repository/{repository}/delete": {
+      "post": {
+        "summary": "Delete files from files paths in a repository",
+        "operationId": "deleteFilesInRepositoryJ",
+        "parameters": [
+          {
+            "name": "repository",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteFilesInRepositoryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "*/*": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/repository/{repository}/{contentPath}": {
+      "get": {
+        "summary": "Get file content from a repository",
+        "operationId": "getFileContentInRepository",
+        "parameters": [
+          {
+            "name": "repository",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentPath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/octet-stream": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/repository/{repository}/minified/{contentPath}": {
+      "get": {
+        "summary": "Get minified content of a file from a repository",
+        "operationId": "getMinifiedContentInRepository",
+        "parameters": [
+          {
+            "name": "repository",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentPath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/octet-stream": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/repository/{repository}/info/{contentPath}": {
+      "get": {
+        "summary": "Get file content information from a repository",
+        "operationId": "getContentInformationForFileInRepositoryJ",
+        "parameters": [
+          {
+            "name": "repository",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentPath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentInformation"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/repository/{repository}/list/{contentPath}": {
+      "get": {
+        "summary": "Get list of files content information for a directory in repository",
+        "operationId": "getContentInformationForFileInDirectoryInRepository",
+        "parameters": [
+          {
+            "name": "repository",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "contentPath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "startOffset",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "nbResults",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "recursive",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "sortOrder",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "NAME_ASC",
+                "NAME_DESC",
+                "CREATION_DATE_ASC",
+                "CREATION_DATE_DESC",
+                "MODIF_DATE_ASC",
+                "MODIF_DATE_DESC",
+                "SIZE_ASC",
+                "SIZE_DESC",
+                "MIME_ASC",
+                "MIME_DESC",
+                "REPOSITORY_ASC",
+                "REPOSITORY_DESC"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileContentInformationList"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/repository/{repository}/search": {
+      "post": {
+        "summary": "Search files content information",
+        "operationId": "searchContentsInformationInRepository",
+        "parameters": [
+          {
+            "name": "repository",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "*/*": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchParameters"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResults"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/pingService": {
+      "post": {
+        "operationId": "pingServiceJ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PingServiceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PingResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/list": {
+      "get": {
+        "operationId": "listProcessesJ",
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/create": {
+      "post": {
+        "operationId": "connectJ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/delete": {
+      "post": {
+        "operationId": "deleteJ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/process": {
+      "post": {
+        "summary": "Process a document (JSON)",
+        "operationId": "processJ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/process/{processId}": {
+      "get": {
+        "summary": "Get processed document (JSON)",
+        "operationId": "getTaskJ",
+        "parameters": [
+          {
+            "name": "processId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Cancel document processing (JSON)",
+        "operationId": "cancelTaskJ",
+        "parameters": [
+          {
+            "name": "processId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/setparameter": {
+      "post": {
+        "operationId": "setParameterJ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetParameterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetParameterResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/processus/parameters/{processusId}": {
+      "get": {
+        "summary": "Get processus parameters",
+        "operationId": "processusParametersJ",
+        "parameters": [
+          {
+            "name": "processusId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/processus/{processusId}": {
+      "get": {
+        "summary": "Get processus information",
+        "operationId": "processusInfoJ",
+        "parameters": [
+          {
+            "name": "processusId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Processus"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete processus information",
+        "operationId": "deleteProcessusJ",
+        "parameters": [
+          {
+            "name": "processusId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "db",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "*/*": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/processus/request/{sqlRequest}": {
+      "get": {
+        "summary": "Search processus information",
+        "operationId": "processusRequestInfoJ",
+        "parameters": [
+          {
+            "name": "sqlRequest",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Processus"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete processus with query",
+        "operationId": "deleteProcessusRequestJ",
+        "parameters": [
+          {
+            "name": "sqlRequest",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "db",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "*/*": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/processus/start": {
+      "post": {
+        "summary": "Start processus",
+        "operationId": "startProcessusInfoJ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LaunchScriptRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LaunchScriptResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/processus": {
+      "put": {
+        "summary": "Update processus information",
+        "operationId": "putProcessusInfoJ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Processus"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create processus information",
+        "operationId": "createProcessusInfoJ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Processus"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateProcessusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/processus/cancel/{processusId}": {
+      "delete": {
+        "summary": "Cancel processus",
+        "operationId": "cancelProcessusInfoJ",
+        "parameters": [
+          {
+            "name": "processusId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/processus/log/{processusId}": {
+      "get": {
+        "summary": "Get processus log",
+        "operationId": "processusLogJ",
+        "parameters": [
+          {
+            "name": "processusId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "startLine",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "nbLines",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "lastNbLines",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessusLogResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/processus/result/{processusId}": {
+      "get": {
+        "summary": "Get processus result",
+        "operationId": "processusResultJ",
+        "parameters": [
+          {
+            "name": "processusId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/octet-stream": {}
+            }
+          }
+        }
+      }
+    },
+    "/rs/ping": {
+      "post": {
+        "summary": "Ping CAM service (JSON)",
+        "operationId": "pingJ",
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PingResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/processAsync": {
+      "post": {
+        "summary": "Process a document asynchronous (JSON)",
+        "operationId": "addTaskJ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProcessRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessId"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/annotate": {
+      "post": {
+        "summary": "Annotate a list of file references asynchronously (JSON)",
+        "operationId": "annotateFileReferences",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FileReferencesAnnotationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LaunchAnnotationsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/queue": {
+      "get": {
+        "summary": "Get documents queue (JSON)",
+        "operationId": "getQueueJ",
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTasksQueueResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/cluster": {
+      "get": {
+        "summary": "Get CAM cluster status (JSON)",
+        "operationId": "getClusterStatusJ",
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetClusterStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/rs/setconfig": {
+      "post": {
+        "summary": "Set CAM cluster configuration (JSON)",
+        "operationId": "setConfigJ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfigRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": "default response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CamInformation": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string",
+            "description": "CAM version",
+            "example": "2.6.0-SNAPSHOT"
+          },
+          "compileDate": {
+            "type": "string",
+            "description": "CAM compilation date",
+            "example": "2019-07-14T20:51:01Z"
+          },
+          "documentationUrl": {
+            "type": "string",
+            "description": "CAM documentation url",
+            "example": "https://docs.mondeca.com"
+          }
+        }
+      },
+      "FilterCriterion": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/LocalizedLabels"
+          },
+          "criterion": {
+            "type": "string"
+          }
+        }
+      },
+      "FormCategory": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/LocalizedLabels"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormField"
+            }
+          }
+        }
+      },
+      "FormData": {
+        "type": "object",
+        "properties": {
+          "categories": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormCategory"
+            }
+          }
+        }
+      },
+      "FormField": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/LocalizedLabels"
+          },
+          "description": {
+            "$ref": "#/components/schemas/LocalizedLabels"
+          },
+          "type": {
+            "$ref": "#/components/schemas/FormFieldType"
+          },
+          "optional": {
+            "type": "boolean"
+          },
+          "activated": {
+            "type": "boolean"
+          },
+          "editable": {
+            "type": "boolean"
+          },
+          "overridable": {
+            "type": "boolean"
+          },
+          "constrainedValues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormValue"
+            }
+          },
+          "value": {
+            "$ref": "#/components/schemas/FormValue"
+          },
+          "overrideValue": {
+            "type": "string"
+          }
+        }
+      },
+      "FormFieldType": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "underType": {
+            "$ref": "#/components/schemas/FormFieldType"
+          }
+        }
+      },
+      "FormValue": {
+        "type": "object",
+        "properties": {
+          "valueString": {
+            "type": "string"
+          },
+          "valueInt": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "valueDouble": {
+            "type": "number",
+            "format": "double"
+          },
+          "valueBoolean": {
+            "type": "boolean"
+          },
+          "valueArray": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FormValue"
+            }
+          },
+          "valueCategory": {
+            "$ref": "#/components/schemas/FormCategory"
+          }
+        }
+      },
+      "LocalizedLabels": {
+        "type": "object",
+        "properties": {
+          "names": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NameWithLanguage"
+            }
+          }
+        }
+      },
+      "NameWithLanguage": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "lang": {
+            "type": "string"
+          }
+        }
+      },
+      "ResourceId": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "empty": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": {
+          "type": "string"
+        }
+      },
+      "ResourceOperationResult": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ResourceId"
+              }
+            }
+          },
+          "resultResources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceWithContent"
+            }
+          },
+          "resourcesSets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourcesSet"
+            }
+          },
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ResourceWithContent": {
+        "type": "object",
+        "properties": {
+          "resourceId": {
+            "$ref": "#/components/schemas/ResourceId"
+          },
+          "binContent": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "byte"
+            }
+          },
+          "formContent": {
+            "$ref": "#/components/schemas/FormData"
+          },
+          "textContent": {
+            "type": "string"
+          }
+        }
+      },
+      "ResourcesSet": {
+        "type": "object",
+        "properties": {
+          "module": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "dir": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "exceptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceId"
+            }
+          },
+          "templateResources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceId"
+            }
+          },
+          "filtercriteria": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterCriterion"
+            }
+          },
+          "error": {
+            "type": "string"
+          },
+          "resourcesSet": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceId"
+            }
+          }
+        }
+      },
+      "UploadResourcesRequest": {
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceWithContent"
+            }
+          },
+          "forceReplace": {
+            "type": "boolean"
+          }
+        }
+      },
+      "DeleteResourcesRequest": {
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceId"
+            }
+          }
+        }
+      },
+      "UserInformation": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "uiProfiles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "organization": {
+            "type": "string"
+          },
+          "rights": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "dataLanguage": {
+            "type": "string"
+          },
+          "uiLanguage": {
+            "type": "string"
+          },
+          "oidcProfileUrl": {
+            "type": "string"
+          },
+          "oidcLogoutUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "UserInfoRequest": {
+        "type": "object",
+        "properties": {
+          "dataLanguage": {
+            "type": "string"
+          },
+          "uiLanguage": {
+            "type": "string"
+          },
+          "uiProfile": {
+            "type": "string"
+          }
+        }
+      },
+      "ConfigInfo": {
+        "type": "object",
+        "properties": {
+          "resourcesSets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourcesSet"
+            }
+          }
+        }
+      },
+      "GetResourcesRequest": {
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceId"
+            }
+          },
+          "format": {
+            "type": "string",
+            "enum": ["binary", "text", "form"]
+          }
+        }
+      },
+      "CorporaList": {
+        "type": "object",
+        "properties": {
+          "corpora": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Corpus"
+            }
+          }
+        }
+      },
+      "Corpus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "corpus_name": {
+            "type": "string"
+          },
+          "access_right": {
+            "type": "string",
+            "enum": ["private_access", "public_access", "public_readonly"]
+          },
+          "owner": {
+            "type": "string"
+          }
+        }
+      },
+      "HttpModifyCorpusRequest": {
+        "type": "object",
+        "properties": {
+          "corpusName": {
+            "type": "string"
+          },
+          "accessRight": {
+            "type": "string",
+            "enum": ["private_access", "public_access", "public_readonly"]
+          }
+        }
+      },
+      "AddOrDeleteFileReferenceInCorpusRequest": {
+        "type": "object",
+        "properties": {
+          "fileReferencesToDelete": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "fileReferencesToAdd": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "FileReferencesList": {
+        "type": "object",
+        "properties": {
+          "fileReferences": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ContentInformation": {
+        "type": "object",
+        "properties": {
+          "fileReference": {
+            "type": "string"
+          },
+          "isContent": {
+            "type": "boolean"
+          },
+          "isDirectory": {
+            "type": "boolean"
+          },
+          "creationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastModificationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sizeInBytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mimeType": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "FileContentInformationList": {
+        "type": "object",
+        "properties": {
+          "filesContentInformation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentInformation"
+            }
+          }
+        }
+      },
+      "SearchResultsCorpus": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentInformation"
+            }
+          },
+          "currentStartOffset": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nextStartOffset": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "SearchParametersCorpus": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "minCreationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "maxCreationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "minModificationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "maxModificationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isContent": {
+            "type": "boolean"
+          },
+          "isDirectory": {
+            "type": "boolean"
+          },
+          "minSizeInBytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maxSizeInBytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mimeTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "startOffset": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nbResults": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sortOrder": {
+            "type": "string",
+            "enum": [
+              "NAME_ASC",
+              "NAME_DESC",
+              "CREATION_DATE_ASC",
+              "CREATION_DATE_DESC",
+              "MODIF_DATE_ASC",
+              "MODIF_DATE_DESC",
+              "SIZE_ASC",
+              "SIZE_DESC",
+              "MIME_ASC",
+              "MIME_DESC",
+              "REPOSITORY_ASC",
+              "REPOSITORY_DESC"
+            ]
+          }
+        }
+      },
+      "RepositoriesList": {
+        "type": "object",
+        "properties": {
+          "repositories": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CreateFoldersRequest": {
+        "type": "object",
+        "properties": {
+          "directoriesToCreatePaths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "addMissingDirectories": {
+            "type": "boolean"
+          }
+        }
+      },
+      "CopyFileReferencesInRepositoryRequest": {
+        "type": "object",
+        "properties": {
+          "destFolder": {
+            "type": "string"
+          },
+          "fileReferencesToCopy": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "DeleteFilesInRepositoryRequest": {
+        "type": "object",
+        "properties": {
+          "directoriesToDeletePaths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "forceIfDirectoryNotEmpty": {
+            "type": "boolean"
+          },
+          "fileToDeletePaths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "SearchResults": {
+        "type": "object",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContentInformation"
+            }
+          },
+          "currentSearchToken": {
+            "type": "string"
+          },
+          "nextSearchToken": {
+            "type": "string"
+          },
+          "currentStartOffset": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nextStartOffset": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "SearchParameters": {
+        "type": "object",
+        "properties": {
+          "searchFolder": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "minCreationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "maxCreationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "minModificationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "maxModificationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isContent": {
+            "type": "boolean"
+          },
+          "isDirectory": {
+            "type": "boolean"
+          },
+          "minSizeInBytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maxSizeInBytes": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "mimeTypes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "searchToken": {
+            "type": "string"
+          },
+          "startOffset": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nbResults": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sortOrder": {
+            "type": "string",
+            "enum": [
+              "NAME_ASC",
+              "NAME_DESC",
+              "CREATION_DATE_ASC",
+              "CREATION_DATE_DESC",
+              "MODIF_DATE_ASC",
+              "MODIF_DATE_DESC",
+              "SIZE_ASC",
+              "SIZE_DESC",
+              "MIME_ASC",
+              "MIME_DESC",
+              "REPOSITORY_ASC",
+              "REPOSITORY_DESC"
+            ]
+          }
+        }
+      },
+      "PingResponse": {
+        "type": "object",
+        "properties": {
+          "response": {
+            "type": "string"
+          }
+        }
+      },
+      "PingServiceRequest": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ListResponse": {
+        "type": "object",
+        "properties": {
+          "processes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CreateResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "DeleteResponse": {
+        "type": "object"
+      },
+      "DeleteRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        }
+      },
+      "ProcessResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          },
+          "statusMessage": {
+            "type": "string"
+          },
+          "nbSteps": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentStep": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "validKnowledge": {
+            "type": "string"
+          },
+          "invalidKnowledge": {
+            "type": "string"
+          },
+          "validMetadata": {
+            "type": "string"
+          },
+          "invalidMetadata": {
+            "type": "string"
+          },
+          "validOccurrences": {
+            "type": "string"
+          },
+          "invalidOccurrences": {
+            "type": "string"
+          },
+          "messages": {
+            "type": "string"
+          },
+          "queuedTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "processBeginTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "resultTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ProcessRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "SetParameterResponse": {
+        "type": "object"
+      },
+      "SetParameterRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "parameter": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "LaunchScriptResponse": {
+        "type": "object",
+        "properties": {
+          "processusId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "LaunchScriptRequest": {
+        "type": "object",
+        "properties": {
+          "parent_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parent_secret": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "label": {
+            "type": "string"
+          },
+          "content_reference1": {
+            "type": "string"
+          },
+          "content_reference2": {
+            "type": "string"
+          },
+          "script_file": {
+            "type": "string"
+          },
+          "parameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Processus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "parent_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "label": {
+            "type": "string"
+          },
+          "secret": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "process_type": {
+            "type": "string",
+            "enum": [
+              "Annotation",
+              "GazetteersSync",
+              "ClassifierRulesSync",
+              "Publish",
+              "ContentExtraction",
+              "ContentUpload",
+              "Test",
+              "Other"
+            ]
+          },
+          "launch_type": {
+            "type": "string",
+            "enum": ["manual", "scheduled", "parent"]
+          },
+          "processus_user": {
+            "type": "string"
+          },
+          "execution_type": {
+            "type": "string",
+            "enum": ["CAM", "Shellscript", "UI"]
+          },
+          "execution_node": {
+            "type": "string"
+          },
+          "execution_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "queue_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "start_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "nb_steps": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "current_step": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "process_status": {
+            "type": "string",
+            "enum": ["QUEUED", "RUNNING", "DONE", "ERROR", "CANCELLED"]
+          },
+          "status_message": {
+            "type": "string"
+          },
+          "code_result": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "process_error": {
+            "type": "string"
+          },
+          "content_reference1": {
+            "type": "string"
+          },
+          "content_date1": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_label1": {
+            "type": "string"
+          },
+          "content_reference2": {
+            "type": "string"
+          },
+          "content_date2": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "content_label2": {
+            "type": "string"
+          },
+          "working_dir": {
+            "type": "string"
+          },
+          "params_file_ref": {
+            "type": "string"
+          },
+          "log_file_ref": {
+            "type": "string"
+          },
+          "result_dir_ref": {
+            "type": "string"
+          },
+          "meta_name1": {
+            "type": "string"
+          },
+          "meta_value1": {
+            "type": "string"
+          },
+          "meta_name2": {
+            "type": "string"
+          },
+          "meta_value2": {
+            "type": "string"
+          },
+          "meta_name3": {
+            "type": "string"
+          },
+          "meta_value3": {
+            "type": "string"
+          },
+          "source_connector_id": {
+            "type": "string"
+          },
+          "dest_connector_id": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateProcessusResponse": {
+        "type": "object",
+        "properties": {
+          "processusId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ProcessusLogResponse": {
+        "type": "object",
+        "properties": {
+          "log": {
+            "type": "string"
+          },
+          "nextLine": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ProcessId": {
+        "type": "object",
+        "properties": {
+          "processId": {
+            "type": "string"
+          }
+        }
+      },
+      "LaunchAnnotationsResponse": {
+        "type": "object",
+        "properties": {
+          "processusId": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "FileReferenceRequest": {
+        "type": "object",
+        "properties": {
+          "workflow": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "fileReference": {
+            "type": "string"
+          }
+        }
+      },
+      "FileReferencesAnnotationRequest": {
+        "type": "object",
+        "properties": {
+          "fileReferenceRequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FileReferenceRequest"
+            }
+          },
+          "parameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "GetTasksQueueResponse": {
+        "type": "object",
+        "properties": {
+          "queue": {
+            "type": "array",
+            "properties": {
+              "empty": {
+                "type": "boolean"
+              }
+            },
+            "items": {
+              "$ref": "#/components/schemas/TaskInformation"
+            }
+          }
+        }
+      },
+      "QueueStatus": {
+        "type": "array",
+        "properties": {
+          "empty": {
+            "type": "boolean"
+          }
+        },
+        "items": {
+          "$ref": "#/components/schemas/TaskInformation"
+        }
+      },
+      "TaskInformation": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["QUEUED", "RUNNING", "DONE", "ERROR", "CANCELLED"]
+          },
+          "statusMessage": {
+            "type": "string"
+          },
+          "nbSteps": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentStep": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "queuedTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "processBeginTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "resultTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "workerNode": {
+            "type": "string"
+          },
+          "user": {
+            "type": "string"
+          },
+          "taskId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "resultRetrieved": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          }
+        }
+      },
+      "ClusterStatus": {
+        "type": "object",
+        "properties": {
+          "isHighAvailability": {
+            "type": "boolean"
+          },
+          "status": {
+            "$ref": "#/components/schemas/StatusSummary"
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "leftNodes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "masterManager": {
+            "type": "string"
+          },
+          "managers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "workers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "nodesInformation": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/NodeInformation"
+            }
+          }
+        }
+      },
+      "GetClusterStatusResponse": {
+        "type": "object",
+        "properties": {
+          "clusterStatus": {
+            "$ref": "#/components/schemas/ClusterStatus"
+          }
+        }
+      },
+      "ManagerStatus": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "queue": {
+            "type": "array",
+            "properties": {
+              "empty": {
+                "type": "boolean"
+              }
+            },
+            "items": {
+              "$ref": "#/components/schemas/TaskInformation"
+            }
+          }
+        }
+      },
+      "NodeInformation": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "nodename": {
+            "type": "string"
+          },
+          "host": {
+            "type": "string"
+          },
+          "ip": {
+            "type": "string"
+          },
+          "port": {
+            "type": "string"
+          },
+          "isManager": {
+            "type": "boolean"
+          },
+          "isWorker": {
+            "type": "boolean"
+          },
+          "pendingTaskRequestIds": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "managerStatus": {
+            "$ref": "#/components/schemas/ManagerStatus"
+          },
+          "workerStatus": {
+            "$ref": "#/components/schemas/WorkerStatus"
+          }
+        }
+      },
+      "ResourceInformation": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "EMPTY",
+              "LOADING",
+              "CLOSING",
+              "PROCESSING",
+              "AVAILABLE",
+              "ERROR",
+              "STOPPING"
+            ]
+          },
+          "statusMessage": {
+            "type": "string"
+          },
+          "nbSteps": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentStep": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dateCreation": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "markedForReloading": {
+            "type": "boolean"
+          },
+          "markedForDestruction": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "string"
+          },
+          "nextTaskId": {
+            "type": "string"
+          },
+          "currentTaskId": {
+            "type": "string"
+          }
+        }
+      },
+      "StatusSummary": {
+        "type": "object",
+        "properties": {
+          "color": {
+            "type": "string",
+            "enum": ["GREEN", "ORANGE", "RED"]
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "WorkerStatus": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastCommandTimeStamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "nbTotalAllocatedResources": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nbTotalProcessingResources": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResourceInformation"
+            }
+          }
+        }
+      },
+      "ConfigRequest": {
+        "type": "object",
+        "properties": {
+          "node": {
+            "type": "string"
+          },
+          "command": {
+            "type": "string"
+          },
+          "resourceName": {
+            "type": "string"
+          },
+          "parameter": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
